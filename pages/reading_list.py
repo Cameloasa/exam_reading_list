@@ -8,6 +8,12 @@ class ReadingListPage:
         "Mina böcker": "favorites"
     }
 
+    """Page object for the Add Book Form Section"""
+    FORM_INPUT_TO_TEST_ID = {
+        "Titel": "add-input-title",
+        "Författare": "add-input-author"
+    }
+
     BOOK_LIST = {
 
     }
@@ -84,3 +90,23 @@ class ReadingListPage:
                 return False
         return True
 
+    """Add book form """
+
+    def are_fields_visible(self, fields: list[str]):
+        """Checks that all form fields identified by label are visible and submit button is disabled."""
+        for label in fields:
+            test_id = self.FORM_INPUT_TO_TEST_ID.get(label.strip())
+            if not test_id:
+                raise ValueError(f"Unknown form field label: {label}")
+
+            element = self.page.get_by_test_id(test_id)
+            expect(element).to_be_visible(timeout=5000)
+
+    def is_submit_button_disabled(self):
+        """Checks submit button is disabled"""
+        submit_button = self.page.get_by_test_id("add-submit")
+        expect(submit_button).not_to_be_enabled(), "Submit button should be disabled initially"
+
+    def is_submit_button_enabled(self) -> bool:
+        """Form button state, enabled, disabled Lägg till ny bok."""
+        return self.page.get_by_test_id("add-submit").is_enabled()

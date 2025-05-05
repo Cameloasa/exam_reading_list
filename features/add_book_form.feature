@@ -7,9 +7,8 @@ Feature: Lägga till en ny bok i katalogen
   Scenario: Formuläret visas när användaren klickar på navigeringsknappen "Lägg till bok"
     Given användaren är på startsidan
     When användaren klickar på navigeringsknappen "Lägg till bok"
-    Then ska formuläret visas
-    And fältet för titel ska vara synligt
-    And fältet för författare ska vara synligt
+    Then fältet "Titel" ska vara synligt
+    And fältet "Författare" ska vara synligt
     And knappen "Lägg till ny bok" ska vara inaktiverad
 
   Scenario Outline: Användaren fyller i formuläret och lägger till bok
