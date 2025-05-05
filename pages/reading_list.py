@@ -110,3 +110,14 @@ class ReadingListPage:
     def is_submit_button_enabled(self) -> bool:
         """Form button state, enabled, disabled Lägg till ny bok."""
         return self.page.get_by_test_id("add-submit").is_enabled()
+
+    def fill_form_field_by_label(self, field_label: str, value: str):
+        """Fills the input field for the specified label with the provided value."""
+
+        test_id = self.FORM_INPUT_TO_TEST_ID.get(field_label)
+        if not test_id:
+            raise ValueError(f"Label unknown: {field_label}")
+
+        input_field = self.page.get_by_test_id(test_id)
+        expect(input_field).to_be_visible(timeout=5000)
+        input_field.fill(value)
