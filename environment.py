@@ -1,4 +1,6 @@
 from playwright.sync_api import sync_playwright
+from pages.reading_list import ReadingListPage
+
 
 def before_all(context):
     # Starta Playwright
@@ -11,7 +13,6 @@ def before_scenario(context, scenario):
     # Öppna en ny webbsida före varje scenario
     context.page = context.browser.new_page()
     context.base_url = "https://tap-ht24-testverktyg.github.io/exam-template/"
-
 
 def after_scenario(context, scenario):
     # Stäng webbsidan efter varje scenario
