@@ -8,6 +8,10 @@ class ReadingListPage:
         "Mina böcker": "favorites"
     }
 
+    BOOK_LIST = {
+
+    }
+
     """Initializes the ReadingListPage with a Playwright Page instance."""
     def __init__(self, page : Page):
         self.page = page
