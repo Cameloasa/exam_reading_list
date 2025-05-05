@@ -41,15 +41,15 @@ så att den visas i katalogen.
 - **Then** formuläret visas
 - **And** fältet för titel ska vara synligt
 - **And** fältet för författare ska vara synligt
-- **And** navigationsknappen "Lägg till ny bok" ska vara inaktiverad
+- **And** knappen "Lägg till ny bok" ska vara inaktiverad
 
 ### Scenario 2: Användaren fyller i formuläret och lägger till bok
 - **Given** användaren är på startsidan
 - **When** användaren klickar på navigationsknappen "Lägg till bok"
 - **And** användaren fyller i "Titel" med "<titel>"
 - **And** användaren fyller i "Författare" med "<författare>"
-- **Then** navigationsknappen "Lägg till ny bok" ska vara aktiverad
-- **When** användaren klickar på navigationsknappen "Lägg till ny bok"
+- **Then** knappen "Lägg till ny bok" ska vara aktiverad
+- **When** användaren klickar på knappen "Lägg till ny bok"
 - **Then** boken "<titel>" av "<författare>" ska sparas i katalogen
 
 ### Test Examples
