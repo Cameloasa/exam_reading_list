@@ -6,11 +6,11 @@ def before_all(context):
     browser = playwright.chromium.launch(headless= True)
     context.playwright  = playwright
     context.browser = browser
-    context.base_url = "https://tap-ht24-testverktyg.github.io/exam-template/"
 
 def before_scenario(context, scenario):
     # Öppna en ny webbsida före varje scenario
     context.page = context.browser.new_page()
+    context.base_url = "https://tap-ht24-testverktyg.github.io/exam-template/"
 
 
 def after_scenario(context, scenario):
