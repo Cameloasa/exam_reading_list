@@ -1,6 +1,13 @@
 from playwright.sync_api import Page, expect
 
 class ReadingListPage:
+    """Page object for the reading list Sections"""
+    SECTION_TO_TEST_ID = {
+        "Katalog": "catalog",
+        "Lägg till bok": "add-book",
+        "Mina böcker": "favorites"
+    }
+
     """Initializes the ReadingListPage with a Playwright Page instance."""
     def __init__(self, page : Page):
         self.page = page
@@ -29,12 +36,8 @@ class ReadingListPage:
 
     def check_navigation_button_visible(self, section: str):
         """Click navigation button visibility."""
-        section_to_test_id = {
-            "Katalog": "catalog",
-            "Lägg till bok": "add-book",
-            "Mina böcker": "favorites"
-        }
-        test_id = section_to_test_id.get(section)
+
+        test_id = self.SECTION_TO_TEST_ID.get(section)
         if not test_id:
             raise ValueError(f"Unknown section: {section}")
         button = self.page.get_by_test_id(test_id)
@@ -42,12 +45,8 @@ class ReadingListPage:
 
     def click_on_navigation_button(self, section: str):
         """Click navigation button."""
-        section_to_test_id = {
-            "Katalog": "catalog",
-            "Lägg till bok": "add-book",
-            "Mina böcker": "favorites"
-        }
-        test_id = section_to_test_id.get(section)
+
+        test_id = self.SECTION_TO_TEST_ID.get(section)
         if not test_id:
             raise ValueError(f"Unknown button label: {section}")
 
@@ -61,12 +60,8 @@ class ReadingListPage:
 
     def is_navigation_button_disabled(self, section: str) -> bool:
         """Returns True if the given navigation button is disabled."""
-        section_to_test_id = {
-            "Katalog": "catalog",
-            "Lägg till bok": "add-book",
-            "Mina böcker": "favorites"
-        }
-        test_id = section_to_test_id.get(section)
+
+        test_id = self.SECTION_TO_TEST_ID.get(section)
         if not test_id:
             raise ValueError(f"Unknown button label: {section}")
 
@@ -75,14 +70,9 @@ class ReadingListPage:
 
     def are_navigation_buttons_enabled(self, sections: list[str]) -> bool:
         """Returns True if all specified navigation buttons are enabled."""
-        section_to_test_id = {
-            "Katalog": "catalog",
-            "Lägg till bok": "add-book",
-            "Mina böcker": "favorites"
-        }
 
         for section in sections:
-            test_id = section_to_test_id.get(section)
+            test_id = self.SECTION_TO_TEST_ID.get(section)
             if not test_id:
                 raise ValueError(f"Unknown button label: {section}")
             button = self.page.get_by_test_id(test_id)
