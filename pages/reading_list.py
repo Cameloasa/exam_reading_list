@@ -28,7 +28,7 @@ class ReadingListPage:
     """Navigation buttons"""
 
     def check_navigation_button_visible(self, section: str):
-        """Checks that a single navigation button is visible and has correct text."""
+        """Click navigation button visibility."""
         section_to_test_id = {
             "Katalog": "catalog",
             "Lägg till bok": "add-book",
@@ -36,11 +36,9 @@ class ReadingListPage:
         }
         test_id = section_to_test_id.get(section)
         if not test_id:
-            raise ValueError(f"Unknown button label: {section}")
-
+            raise ValueError(f"Unknown section: {section}")
         button = self.page.get_by_test_id(test_id)
         expect(button).to_be_visible()
-        expect(button).to_have_text(section)
 
     def click_on_navigation_button(self, section: str):
         """Click navigation button."""

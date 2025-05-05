@@ -4,7 +4,7 @@ from behave import then, when
 def step_then_navigation_buttons_visible(context, section):
     context.reading_list.check_navigation_button_visible(section)
 
-@when(u'användaren klickar på "{section}"')
+@when(u'användaren klickar på navigeringsknappen "{section}"')
 def step_when_click_on_navigation_buttons(context, section):
     context.reading_list.click_on_navigation_button(section)
 

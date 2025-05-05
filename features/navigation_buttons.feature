@@ -13,9 +13,9 @@ Feature: Navigeringsknappar
     And ska navigeringsknappen "Mina böcker" vara synlig
 
   Scenario Outline: Endast knappen för aktuell sektion är inaktiverad
-    When användaren klickar på "<sektion>"
-    Then ska navigeringsknappen "<sektion>" vara inaktiverad
-    And ska knapparna "<aktiva_knappar>" vara aktiverade
+  When användaren klickar på navigeringsknappen "<sektion>"
+  Then ska navigeringsknappen "<sektion>" vara inaktiverad
+  And ska navigeringsknapparna "<aktiva_knappar>" vara aktiverade
 
     Examples:
       | sektion         | aktiva_knappar            |
