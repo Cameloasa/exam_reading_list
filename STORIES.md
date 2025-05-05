@@ -35,9 +35,9 @@ så att den visas i katalogen.
 
 ## Acceptanskriterier
 
-### Scenario 1: Formuläret visas när användaren klickar på navigationsknappen "Lägg till bok"
+### Scenario 1: Formuläret visas när användaren klickar på navigeringsknappen "Lägg till bok"
 - **Given** användaren är på startsidan
-- **When** användaren klickar på navigationsknappen "Lägg till bok"
+- **When** användaren klickar på navigeringsknappen "Lägg till bok"
 - **Then** formuläret visas
 - **And** fältet för titel ska vara synligt
 - **And** fältet för författare ska vara synligt
@@ -45,7 +45,7 @@ så att den visas i katalogen.
 
 ### Scenario 2: Användaren fyller i formuläret och lägger till bok
 - **Given** användaren är på startsidan
-- **When** användaren klickar på navigationsknappen "Lägg till bok"
+- **When** användaren klickar på navigeringsknappen "Lägg till bok"
 - **And** användaren fyller i "Titel" med "<titel>"
 - **And** användaren fyller i "Författare" med "<författare>"
 - **Then** knappen "Lägg till ny bok" ska vara aktiverad

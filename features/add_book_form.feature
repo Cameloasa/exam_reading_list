@@ -4,9 +4,9 @@ Feature: Lägga till en ny bok i katalogen
   Vill jag kunna lägga till en ny bok via formuläret
   Så att den visas i katalogen
 
-  Scenario: Formuläret visas när användaren klickar på navigationsknappen "Lägg till bok"
+  Scenario: Formuläret visas när användaren klickar på navigeringsknappen "Lägg till bok"
     Given användaren är på startsidan
-    When användaren klickar på navigationsknappen "Lägg till bok"
+    When användaren klickar på navigeringsknappen "Lägg till bok"
     Then ska formuläret visas
     And fältet för titel ska vara synligt
     And fältet för författare ska vara synligt
@@ -14,7 +14,7 @@ Feature: Lägga till en ny bok i katalogen
 
   Scenario Outline: Användaren fyller i formuläret och lägger till bok
     Given användaren är på startsidan
-    When användaren klickar på navigationsknappen "Lägg till bok"
+    When användaren klickar på navigeringsknappen "Lägg till bok"
     And användaren fyller i "Titel" med "<titel>"
     And användaren fyller i "Författare" med "<författare>"
     Then knappen "Lägg till ny bok" ska vara aktiverad
