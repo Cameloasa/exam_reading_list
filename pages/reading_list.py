@@ -112,12 +112,25 @@ class ReadingListPage:
         return self.page.get_by_test_id("add-submit").is_enabled()
 
     def fill_form_field_by_label(self, field_label: str, value: str):
-        """Fills the input field for the specified label with the provided value."""
+        """Fills the input field for the specified label with the provided value and stores it for later validation."""
 
-        test_id = self.FORM_INPUT_TO_TEST_ID.get(field_label)
+        test_id = self.FORM_INPUT_TO_TEST_ID.get(field_label.strip())
         if not test_id:
             raise ValueError(f"Label unknown: {field_label}")
 
         input_field = self.page.get_by_test_id(test_id)
+
         expect(input_field).to_be_visible(timeout=5000)
-        input_field.fill(value)
+
+        input_field.fill(value.strip())
+
+    def submit_new_book(self, title: str, author: str):
+        """Submits the book and stores it for later validation."""
+        submit_button = self.page.get_by_test_id("add-submit")
+        expect(submit_button).to_be_enabled(timeout=3000)
+        submit_button.click()
+
+    def is_book_in_catalog(self, title: str, author: str) -> bool:
+        """Checks if the book with given title and author exists in the catalog."""
+        locator = self.page.locator(f'text="{title}" >> text="{author}"')
+        return locator.is_visible()

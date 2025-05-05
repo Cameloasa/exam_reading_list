@@ -16,6 +16,19 @@ def step_when_fill_add_book_form(context, field, value):
 def step_then_submit_button_enabled(context):
     context.reading_list.is_submit_button_enabled()
 
+@when(u'användaren klickar på knappen "Lägg till ny bok"')
+def step_when_click_on_submit_button(context):
+    context.reading_list.submit_new_book()
+
+@then(u'boken "Mio min Mio" av "Astrid Lindgren" ska sparas i katalogen')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then boken "Mio min Mio" av "Astrid Lindgren" ska sparas i katalogen')
+
+
+
+
+
+
 
 
 
