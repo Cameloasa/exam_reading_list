@@ -24,19 +24,71 @@ class ReadingListPage:
         locator_p = self.page.get_by_text("Sidan för dig som gillar att läsa. Välj dina favoriter.")
         expect(locator_p).to_be_visible()
 
+
     """Navigation buttons"""
 
-    def check_navigation_button_visible(self, label: str):
+    def check_navigation_button_visible(self, section: str):
         """Checks that a single navigation button is visible and has correct text."""
-        label_to_test_id = {
+        section_to_test_id = {
             "Katalog": "catalog",
             "Lägg till bok": "add-book",
             "Mina böcker": "favorites"
         }
-        test_id = label_to_test_id.get(label)
+        test_id = section_to_test_id.get(section)
         if not test_id:
-            raise ValueError(f"Unknown button label: {label}")
+            raise ValueError(f"Unknown button label: {section}")
 
         button = self.page.get_by_test_id(test_id)
         expect(button).to_be_visible()
-        expect(button).to_have_text(label)
+        expect(button).to_have_text(section)
+
+    def click_on_navigation_button(self, section: str):
+        """Click navigation button."""
+        section_to_test_id = {
+            "Katalog": "catalog",
+            "Lägg till bok": "add-book",
+            "Mina böcker": "favorites"
+        }
+        test_id = section_to_test_id.get(section)
+        if not test_id:
+            raise ValueError(f"Unknown button label: {section}")
+
+        button = self.page.get_by_test_id(test_id)
+        expect(button).to_be_visible(timeout= 5000)
+
+        if button.is_enabled():
+            button.click()
+        else:
+            print(f'Button "{section}" is currently disabled. Skipping click.')
+
+    def is_navigation_button_disabled(self, section: str) -> bool:
+        """Returns True if the given navigation button is disabled."""
+        section_to_test_id = {
+            "Katalog": "catalog",
+            "Lägg till bok": "add-book",
+            "Mina böcker": "favorites"
+        }
+        test_id = section_to_test_id.get(section)
+        if not test_id:
+            raise ValueError(f"Unknown button label: {section}")
+
+        button = self.page.get_by_test_id(test_id)
+        return not button.is_enabled()
+
+    def are_navigation_buttons_enabled(self, sections: list[str]) -> bool:
+        """Returns True if all specified navigation buttons are enabled."""
+        section_to_test_id = {
+            "Katalog": "catalog",
+            "Lägg till bok": "add-book",
+            "Mina böcker": "favorites"
+        }
+
+        for section in sections:
+            test_id = section_to_test_id.get(section)
+            if not test_id:
+                raise ValueError(f"Unknown button label: {section}")
+            button = self.page.get_by_test_id(test_id)
+            if not button.is_enabled():
+                return False
+        return True
+
