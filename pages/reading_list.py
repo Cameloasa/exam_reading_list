@@ -24,3 +24,19 @@ class ReadingListPage:
         locator_p = self.page.get_by_text("Sidan för dig som gillar att läsa. Välj dina favoriter.")
         expect(locator_p).to_be_visible()
 
+    """Navigation buttons"""
+
+    def check_navigation_button_visible(self, label: str):
+        """Checks that a single navigation button is visible and has correct text."""
+        label_to_test_id = {
+            "Katalog": "catalog",
+            "Lägg till bok": "add-book",
+            "Mina böcker": "favorites"
+        }
+        test_id = label_to_test_id.get(label)
+        if not test_id:
+            raise ValueError(f"Unknown button label: {label}")
+
+        button = self.page.get_by_test_id(test_id)
+        expect(button).to_be_visible()
+        expect(button).to_have_text(label)
