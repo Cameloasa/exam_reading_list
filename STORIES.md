@@ -7,4 +7,3 @@
 ### Acceptanskriterier:
 - Sidans huvudrubrik `<h1>` ska alltid visa `Läslistan`
 - Välkomsttexten `Välkomen` och introduktionstexten ska alltid visas i huvudsektionen
-- Detta ska gälla oavsett om jag är i `Katalog`, `Lägg till book` eller `Mina böcker`
