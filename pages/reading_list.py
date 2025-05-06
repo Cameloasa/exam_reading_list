@@ -1,8 +1,9 @@
+
+from playwright.sync_api import Page, expect
 import re
 
-from playwright.sync_api import Page, expect, Locator
-
 class ReadingListPage:
+
     """Page object for the reading list Sections"""
     SECTION_TO_TEST_ID = {
         "Katalog": "catalog",
@@ -16,9 +17,6 @@ class ReadingListPage:
         "Författare": "add-input-author"
     }
 
-    BOOK_LIST = {
-
-    }
 
     """Initializes the ReadingListPage with a Playwright Page instance."""
     def __init__(self, page : Page):
@@ -46,7 +44,6 @@ class ReadingListPage:
 
 
     """Navigation buttons"""
-
     def check_navigation_button_visible(self, section: str):
         """Click navigation button visibility."""
 
@@ -94,7 +91,6 @@ class ReadingListPage:
         return True
 
     """Add book form """
-
     def are_fields_visible(self, fields: list[str]):
         """Checks that all form fields identified by label are visible."""
         for label in fields:
@@ -142,9 +138,8 @@ class ReadingListPage:
 
 
     """Catalog"""
-
     def is_book_in_catalog(self, title: str, author: str) -> bool:
-        import re
+
         pattern = rf'"{re.escape(title)}",\s*{re.escape(author)}'
         regex = re.compile(pattern)
 
@@ -157,9 +152,34 @@ class ReadingListPage:
                 return True
         return False
 
-    def get_book_locator(self, title: str) -> Locator:
-        """Returns the locator for a book entry in the catalog based on its title."""
-        return self.page.locator(".book", has_text=f'"{title}"')
+    def check_books_in_catalog(self):
+        books = self.page.locator(".book")
+        count = books.count()
+
+        for i in range(count):
+            book_text = books.nth(i).inner_text().strip()
+            expect(book_text).not_to_be_empty(), f"Cartea de la index {i} nu are titlu și autor"
+
+            # Extragem titlul și autorul din textul cărții
+            title_author = book_text.split(",")
+            expect(len(title_author)).to_be_equal(2), f"Formatul titlului și autorului este incorect: {book_text}"
+
+    # Simulăm un click pe fiecare carte pentru a o adăuga în 'Mina böcker'
+    def add_books_to_favorites(self):
+        books = self.page.locator(".book")
+        count = books.count()
+
+        for i in range(count):
+            book_locator = books.nth(i)
+            book_locator.click()
+
+            # Verificăm dacă cartea este adăugată la "Mina böcker"
+            # Aceasta presupune că trebuie să avem un mecanism de validare (ceva ce ar trebui să fie definit pe baza implementării aplicației)
+            expect(self.page.locator(".favorites-list").locator(
+                f'li:has-text("{book_locator.inner_text().strip()}")')).to_be_visible()
+
+
+
 
 
 
