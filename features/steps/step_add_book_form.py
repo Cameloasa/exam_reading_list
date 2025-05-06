@@ -22,7 +22,7 @@ def step_when_click_on_submit_button(context):
 
 @then(u'boken "{title}" av "{author}" visas i katalogen')
 def step_then_book_appeared_in_catalog(context, title, author):
-    assert context.reading_list.is_book_in_catalog(title, author), f'Book "{title}" by {author} was not found in catalog'
+    assert context.reading_list.check_book_in_catalog(title, author), f'Book "{title}" by {author} was not found in catalog'
 
 
 

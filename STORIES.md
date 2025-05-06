@@ -75,3 +75,20 @@
 **Given** användaren är på startsidan som motsvarar "Katalogen"
 **When** boken "<titel>" av "<författare>" visas i katalogen
 **Then** användaren ska kunna se "<titel>" och "<författare>" i katalogen
+
+---
+
+## User Story: Favoritböcker
+
+**Som** användare 
+**vill jag** kunna se en lista med böcker i katalogen 
+**så att** jag kan välja mina favorit böcker
+
+
+## Acceptanskriterier:
+
+1. Användaren är på **startsidan**, som motsvarar "Katalogen".
+2. Användaren klickar på hjärtat bredvid "<titel>"
+3. Användaren klickar på navigeringsknappen "Mina böcker"
+4. boken "<titel>" av "<författare>" visas i Mina böcker
+

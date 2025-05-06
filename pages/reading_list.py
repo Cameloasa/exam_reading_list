@@ -138,47 +138,22 @@ class ReadingListPage:
 
 
     """Catalog"""
-    def is_book_in_catalog(self, title: str, author: str) -> bool:
+    def check_book_in_catalog(self, title: str, author: str) -> bool:
+        """Checks if a specific book with title and author is present and visible in the catalog."""
 
-        pattern = rf'"{re.escape(title)}",\s*{re.escape(author)}'
+        pattern = rf'"\s*{re.escape(title)}\s*"\s*,\s*{re.escape(author)}\s*'
         regex = re.compile(pattern)
 
         books = self.page.locator(".book")
         count = books.count()
 
         for i in range(count):
-            text = books.nth(i).inner_text().strip()
+            book_element = books.nth(i)
+            text = book_element.inner_text().strip()
             if regex.search(text):
+                expect(book_element).to_be_visible(), f'Book "{title}" by {author} is not visible'
                 return True
         return False
-
-    def check_books_in_catalog(self):
-        books = self.page.locator(".book")
-        count = books.count()
-
-        for i in range(count):
-            book_text = books.nth(i).inner_text().strip()
-            expect(book_text).not_to_be_empty(), f"Cartea de la index {i} nu are titlu și autor"
-
-            # Extragem titlul și autorul din textul cărții
-            title_author = book_text.split(",")
-            expect(len(title_author)).to_be_equal(2), f"Formatul titlului și autorului este incorect: {book_text}"
-
-    # Simulăm un click pe fiecare carte pentru a o adăuga în 'Mina böcker'
-    def add_books_to_favorites(self):
-        books = self.page.locator(".book")
-        count = books.count()
-
-        for i in range(count):
-            book_locator = books.nth(i)
-            book_locator.click()
-
-            # Verificăm dacă cartea este adăugată la "Mina böcker"
-            # Aceasta presupune că trebuie să avem un mecanism de validare (ceva ce ar trebui să fie definit pe baza implementării aplicației)
-            expect(self.page.locator(".favorites-list").locator(
-                f'li:has-text("{book_locator.inner_text().strip()}")')).to_be_visible()
-
-
 
 
 
