@@ -63,17 +63,15 @@
 
 **Som** användare 
 **vill jag** kunna se en lista med böcker i katalogen 
-**så att** jag kan titta på alla tillgängliga böcker och sen lägga till dem i min "Mina böcker".
+**så att** jag kan titta på alla tillgängliga böcker
 
 ## Acceptanskriterier:
 
 1. Användaren är på **startsidan**, som motsvarar "Katalogen".
 2. Användaren kan se en lista med böcker på startsidan, där varje bok har titel och författare.
-3. Användaren kan interagera med varje bok (t.ex. klicka på den för att lägga till den i "Mina böcker").
 
 ## Scenario: Visa böcker i katalogen
 
-**Given** användaren är på startsidan som motsvarar "Katalogen" 
-**When** användaren ser böckerna på sidan  
-**Then** användaren ska kunna se titlar och författare för varje bok  
-**And** användaren ska kunna interagera med varje bok för att lägga till den i "Mina böcker".
+**Given** användaren är på startsidan som motsvarar "Katalogen"
+**When** boken "<titel>" av "<författare>" visas i katalogen
+**Then** användaren ska kunna se "<titel>" och "<författare>" i katalogen
