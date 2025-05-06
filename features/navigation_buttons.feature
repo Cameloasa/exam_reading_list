@@ -18,7 +18,7 @@ Feature: Navigeringsknappar
   And ska navigeringsknapparna "<aktiva_knappar>" vara aktiverade
 
     Examples:
-      | sektion         | aktiva_knappar            |
-      | Katalog         | Lägg till bok, Mina böcker |
-      | Lägg till bok   | Katalog, Mina böcker       |
-      | Mina böcker     | Katalog, Lägg till bok     |
+      | sektion         | aktiva_knappar              |
+      | Katalog         | Lägg till bok, Mina böcker  |
+      | Lägg till bok   | Katalog, Mina böcker        |
+      | Mina böcker     | Katalog, Lägg till bok      |
