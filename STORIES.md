@@ -13,8 +13,8 @@
 ## User Story: Navigering i applikationen
 
 **Som** användare  
-**vill jag** kunna se och använda navigeringsknapparna i toppmenyn  
-**så att** jag enkelt kan växla mellan "Katalog", "Lägg till bok" och se "Mina böcker".
+**Vill jag** kunna se och använda navigeringsknapparna i toppmenyn  
+**Så att** jag enkelt kan växla mellan "Katalog", "Lägg till bok" och se "Mina böcker".
 
 ### Acceptanskriterier
 
@@ -29,17 +29,16 @@
 
 # User Story: Lägga till en ny bok i katalogen
 
-## Som användare
-Jag vill kunna lägga till en ny bok via formuläret, 
-så att den visas i katalogen.
+**Som** användare  
+**Vill jag** kunna lägga till en ny bok via formuläret, 
+**Så att** den visas i katalogen.
 
 ## Acceptanskriterier
 
 ### Scenario 1: Formuläret visas när användaren klickar på navigeringsknappen "Lägg till bok"
 - **Given** användaren är på startsidan
 - **When** användaren klickar på navigeringsknappen "Lägg till bok"
-- **Then** formuläret visas
-- **And** fältet för titel ska vara synligt
+- **Then** fältet "Titel" ska vara synligt
 - **And** fältet för författare ska vara synligt
 - **And** knappen "Lägg till ny bok" ska vara inaktiverad
 
@@ -57,3 +56,24 @@ så att den visas i katalogen.
 - **Titel:** Mio min Mio, **Författare:** Astrid Lindgren
 - **Titel:** Bröderna Lejonhjärta, **Författare:** Astrid Lindgren
 - **Titel:** Pippi Långstrump, **Författare:** Astrid Lindgren
+
+---
+
+# User Story: Bokkatalog
+
+**Som** användare 
+**vill jag** kunna se en lista med böcker i katalogen 
+**så att** jag kan titta på alla tillgängliga böcker och sen lägga till dem i min "Mina böcker".
+
+## Acceptanskriterier:
+
+1. Användaren är på **startsidan**, som motsvarar "Katalogen".
+2. Användaren kan se en lista med böcker på startsidan, där varje bok har titel och författare.
+3. Användaren kan interagera med varje bok (t.ex. klicka på den för att lägga till den i "Mina böcker").
+
+## Scenario: Visa böcker i katalogen
+
+**Given** användaren är på startsidan som motsvarar "Katalogen" 
+**When** användaren ser böckerna på sidan  
+**Then** användaren ska kunna se titlar och författare för varje bok  
+**And** användaren ska kunna interagera med varje bok för att lägga till den i "Mina böcker".
