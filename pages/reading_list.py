@@ -1,4 +1,6 @@
-from playwright.sync_api import Page, expect
+import re
+
+from playwright.sync_api import Page, expect, Locator
 
 class ReadingListPage:
     """Page object for the reading list Sections"""
@@ -21,6 +23,7 @@ class ReadingListPage:
     """Initializes the ReadingListPage with a Playwright Page instance."""
     def __init__(self, page : Page):
         self.page = page
+        self.last_book = {}
 
     def navigate_to(self, base_url: str):
         """Navigates to the application's base URL."""
@@ -93,7 +96,7 @@ class ReadingListPage:
     """Add book form """
 
     def are_fields_visible(self, fields: list[str]):
-        """Checks that all form fields identified by label are visible and submit button is disabled."""
+        """Checks that all form fields identified by label are visible."""
         for label in fields:
             test_id = self.FORM_INPUT_TO_TEST_ID.get(label.strip())
             if not test_id:
@@ -112,7 +115,7 @@ class ReadingListPage:
         return self.page.get_by_test_id("add-submit").is_enabled()
 
     def fill_form_field_by_label(self, field_label: str, value: str):
-        """Fills the input field for the specified label with the provided value and stores it for later validation."""
+        """Fills a single input field identified by label."""
 
         test_id = self.FORM_INPUT_TO_TEST_ID.get(field_label.strip())
         if not test_id:
@@ -124,13 +127,39 @@ class ReadingListPage:
 
         input_field.fill(value.strip())
 
-    def submit_new_book(self, title: str, author: str):
-        """Submits the book and stores it for later validation."""
+    def fill_add_book_form(self, title: str, author: str):
+        """Fills out the form with title and author and stores data for later validation."""
+        self.fill_form_field_by_label("Titel", title)
+        self.fill_form_field_by_label("Författare", author)
+
+        self.last_book = {"title": title, "author": author}
+
+    def submit_new_book(self):
+        """Submits the add book form."""
         submit_button = self.page.get_by_test_id("add-submit")
         expect(submit_button).to_be_enabled(timeout=3000)
         submit_button.click()
 
+
+    """Catalog"""
+
     def is_book_in_catalog(self, title: str, author: str) -> bool:
-        """Checks if the book with given title and author exists in the catalog."""
-        locator = self.page.locator(f'text="{title}" >> text="{author}"')
-        return locator.is_visible()
+        import re
+        pattern = rf'"{re.escape(title)}",\s*{re.escape(author)}'
+        regex = re.compile(pattern)
+
+        books = self.page.locator(".book")
+        count = books.count()
+
+        for i in range(count):
+            text = books.nth(i).inner_text().strip()
+            if regex.search(text):
+                return True
+        return False
+
+    def get_book_locator(self, title: str) -> Locator:
+        """Returns the locator for a book entry in the catalog based on its title."""
+        return self.page.locator(".book", has_text=f'"{title}"')
+
+
+

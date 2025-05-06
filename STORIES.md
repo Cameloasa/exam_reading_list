@@ -50,7 +50,8 @@ så att den visas i katalogen.
 - **And** användaren fyller i "Författare" med "<författare>"
 - **Then** knappen "Lägg till ny bok" ska vara aktiverad
 - **When** användaren klickar på knappen "Lägg till ny bok"
-- **Then** boken "<titel>" av "<författare>" ska sparas i katalogen
+- **And** användaren klickar på navigeringsknappen "Katalog"
+- **Then** boken "<titel>" av "<författare>" ska visas i katalogen
 
 ### Test Examples
 - **Titel:** Mio min Mio, **Författare:** Astrid Lindgren
