@@ -76,7 +76,7 @@
 
 ---
 
-## 5. Favoritböcker
+## 5. Lägga till Favoritböcker
 
 **Som** användare  
 **Vill jag** kunna markera böcker som favoriter  
@@ -94,4 +94,36 @@
 - **When** användaren favoritmarkerar boken "<titel>"
 - **And** användaren klickar på navigeringsknappen "Mina böcker"
 - **Then** användaren ska kunna se "<titel>" och "<författare>" i "Mina böcker"
+
+## 6. Ta bort Favoritböcker
+
+**Som** användare  
+**Vill jag** kunna ta bort en bok från mina favoriter
+**Så att** jag kan ångra ett val eller uppdatera min lista
+
+### Acceptanskriterier:
+1. Användaren är i katalogen  
+2. Klickar på hjärtat bredvid "<titel>"  
+3. Går till "Mina böcker"  
+4. Ser boken "<titel>" av "<författare>" i "Mina böcker"
+5. Användaren går till "Katalog"
+6. Klickar på hjärtat bredvid "<titel>" 
+7. Går till "Mina böcker"  
+8. Ser inte boken "<titel>" av "<författare>" i "Mina böcker"
+
+### Scenario:
+- **Given** användaren är på startsidan  
+- **Then** boken "<titel>" av "<författare>" visas i katalogen 
+- **When** användaren favoritmarkerar boken "<titel>"
+- **And** användaren klickar på navigeringsknappen "Mina böcker"
+- **Then** användaren ska kunna se "<titel>" och "<författare>" i "Mina böcker"
+- **When** användaren klickar på navigeringsknappen "Katalog"
+- **Then** användaren favoritmarkerar boken "<titel>"
+- **And** användaren klickar på navigeringsknappen "Mina böcker"
+- **Then** användaren ska inte kunna se "<titel>" och "<författare>" i "Mina böcker"
+
+
+
+
+  
 
