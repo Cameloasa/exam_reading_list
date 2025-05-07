@@ -155,26 +155,37 @@ class ReadingListPage:
                 return True
         return False
 
-    def mark_book_as_favorite(self, title: str) -> None:
-        """Clicks the heart icon (star) for a specific book title in the catalog to mark it as a favorite."""
-
-        star_button = self.page.get_by_test_id(f'star-{title}')
-        expect(star_button).to_be_visible(timeout=3000)
-        star_button.click()
-        expect(star_button).to_have_class(
-            re.compile(r'\bselected\b')), f'The heart icon for "{title}" was not marked as favorite.'
-
 
     """Favorites"""
+    def toggle_book_as_favorite(self, title: str) -> None:
+        """Toggles the heart icon (star) for a specific book title in the catalog to either mark or unmark it as a favorite."""
+
+        # Locate button on test ID- star
+        star_button = self.page.get_by_test_id(f'star-{title}')
+
+        # Check that button is visible
+        expect(star_button).to_be_visible(timeout=3000)
+
+        # Click button to change the state (mark/unmark)
+        star_button.click()
+
+        # Check if the button was marked as favorit (has the clas 'selected')
+        if 'selected' in star_button.get_attribute('class'):
+            expect(star_button).to_have_class(
+                re.compile(r'\bselected\b')), f'The heart icon for "{title}" should be marked as favorite.'
+        else:
+            expect(star_button).not_to_have_class(
+                re.compile(r'\bselected\b')), f'The heart icon for "{title}" should not be marked as favorite.'
+
+
     def is_book_in_favorites(self, title: str) -> bool:
         """Checks if a book with the given title is present in the 'Mina böcker' (favorites) section."""
         favorite_book = self.page.get_by_test_id(f"fav-{title}")
         try:
             expect(favorite_book).to_be_visible(timeout=3000)
             return True
-        except Exception():
+        except Exception:
             return False
-
 
 
 
