@@ -1,8 +1,8 @@
 Feature: Visa bokkatalog lista
 
-  För att kunna välja bland tillgängliga böcker
   Som en användare
   Vill jag kunna se en lista med böcker i katalogen
+  Så att kunna välja bland tillgängliga böcker
 
   Scenario Outline: Användaren ser en lista med böcker i katalogen
     Given användaren är på startsidan

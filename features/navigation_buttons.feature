@@ -2,7 +2,7 @@ Feature: Navigeringsknappar
 
   Som en användare
   Vill jag kunna se och använda navigeringsknapparna i toppmenyn
-  För att kunna växla mellan katalogen, lägga till en ny bok och se mina favoriter
+  Så att kunna växla mellan katalogen, lägga till en ny bok och se mina favoriter
 
   Background:
     Given användaren är på startsidan

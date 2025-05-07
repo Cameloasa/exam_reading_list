@@ -1,8 +1,8 @@
 Feature: Favoritböcker
 
   Som användare
-  vill jag kunna se en lista med böcker i katalogen
-  så att jag kan välja mina favorit böcker
+  Vill jag kunna se en lista med böcker i katalogen
+  Så att jag kan välja mina favorit böcker
 
   Scenario Outline: Användaren lägger till en bok som favorit och ser den i "Mina böcker"
     Given användaren är på startsidan
