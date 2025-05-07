@@ -1,17 +1,22 @@
+# Läslistan – Testautomatisering
+
+- Detta är ett testprojekt för webbsidan **Läslistan**
+- https://tap-ht24-testverktyg.github.io/exam-template/
+
 ## Installation och Setup
 
-1. Klona projektet från GitHub:
+1. **Klona projektet från GitHub:**
 
-```bash
-git clone https://github.com/Cameloasa/exam_reading_list
-cd exam_reading_list
+   ```bash
+   git clone https://github.com/Cameloasa/exam_reading_list
+   cd exam_reading_list
 
-2. Skapa och aktivera ett virtuellt Python-miljö:
+2. **Installera projektets beroenden:**
 
-python -m venv .venv
-source .venv/bin/activate        # På Mac/Linux
-.venv\Scripts\activate           # På Windows
+    pip install -r requirements.txt
 
-3. Installera projektets beroenden:
+3. **Kör testerna:**
 
-pip install -r requirements.txt
+    behave
+
+
