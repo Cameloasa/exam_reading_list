@@ -69,7 +69,7 @@
 1. Startsidan visar katalogen  
 2. Varje bok ska visa både titel och författare  
 
-### Scenario:
+### Scenario outline: Användaren ser en lista med böcker i katalogen
 - **Given** användaren är på startsidan  
 - **When** boken "<titel>" av "<författare>" visas i katalogen  
 - **Then** användaren ska kunna se "<titel>" och "<författare>"  
@@ -88,7 +88,7 @@
 3. Går till "Mina böcker"  
 4. Ser boken "<titel>" av "<författare>" i "Mina böcker"
 
-### Scenario:
+### Scenario outline: Användaren lägger till en bok som favorit och ser den i "Mina böcker"
 - **Given** användaren är på startsidan  
 - **Then** boken "<titel>" av "<författare>" visas i katalogen 
 - **When** användaren favoritmarkerar boken "<titel>"
@@ -110,6 +110,36 @@
 6. Klickar på hjärtat bredvid "<titel>" 
 7. Går till "Mina böcker"  
 8. Ser inte boken "<titel>" av "<författare>" i "Mina böcker"
+
+### Scenario: En användare favoritmarkerar och sedan avmarkerar en bok
+- **Given** användaren är på startsidan  
+- **Then** boken "<titel>" av "<författare>" visas i katalogen 
+- **When** användaren favoritmarkerar boken "<titel>"
+- **And** användaren klickar på navigeringsknappen "Mina böcker"
+- **Then** användaren ska kunna se "<titel>" och "<författare>" i "Mina böcker"
+- **When** användaren klickar på navigeringsknappen "Katalog"
+- **Then** användaren favoritmarkerar boken "<titel>"
+- **And** användaren klickar på navigeringsknappen "Mina böcker"
+- **Then** användaren ska inte kunna se "<titel>" och "<författare>" i "Mina böcker"
+
+### Scenario outline: En användare favoritmarkerar två böcker och avmarkerar en
+
+## 7. Växlande favoritstatus vid upprepade klick
+
+**Som** användare  
+**Vill jag** favoritmarkering ska växla varje gång jag klickar på hjärtat
+**Så att** det alltid stämmer med min avsikt.
+
+### Acceptanskriterier:
+1. Användaren är i katalogen  
+2. Klickar på hjärtat bredvid "<titel>"  
+3. Går till "Mina böcker"  
+4. Ser boken "<titel>" av "<författare>" i "Mina böcker"
+5. Användaren går till "Katalog"
+6. Klickar på hjärtat bredvid "<titel>" 
+7. Går till "Mina böcker"  
+8. Ser inte boken "<titel>" av "<författare>" i "Mina böcker"
+9. Upprepa flera gånger
 
 ### Scenario:
 - **Given** användaren är på startsidan  
